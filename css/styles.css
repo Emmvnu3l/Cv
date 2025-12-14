@@ -19,7 +19,12 @@ body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-heigh
 .role { margin-bottom: 12px; }
 .role-header { display: grid; grid-template-columns: 1fr auto; align-items: baseline; }
 .position { font-weight: 700; }
+.position-link { color: #000; text-decoration: none; }
+.position-link:hover { text-decoration: underline; color: var(--accent); }
 .meta { font-style: italic; color: #222; }
+/* Consistent list spacing in roles */
+.role ul { margin-top: 8px; }
+.role ul li { margin-bottom: 4px; }
 ul { margin: 6px 0 0 18px; padding: 0; }
 li { margin-bottom: 4px; }
 .edu-item { margin-bottom: 10px; }
@@ -47,6 +52,15 @@ li { margin-bottom: 4px; }
   .inline-list > :not(.sep)::before { content: "•"; position: absolute; left: 0; top: 0; }
   .header .subtitle { position: relative; padding-left: 12px; margin-top: 6px; }
   .header .subtitle::before { content: "•"; position: absolute; left: 0; top: 0; }
+}
+/* Mobile layout for Experiencia Laboral */
+@media (max-width: 480px) {
+  #experiencia .role { margin-bottom: 12px; }
+  #experiencia .role-header { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding-bottom: 0; }
+  #experiencia .role-header > div { width: 100%; }
+  #experiencia .role-header .meta { position: static; margin-top: 2px; }
+  #experiencia .role ul { margin-top: 8px; }
+  #experiencia .role-header > div, #experiencia .role ul { transition: all .2s ease; }
 }
 @page { size: A4; margin: 2.5cm; }
 @media print { .page { padding: 0; } .actions { display: none; } a { color: inherit; text-decoration: none; } .skill-group { border-color: #000; }
