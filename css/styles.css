@@ -1,19 +1,22 @@
-:root { --accent: #A51C30; --text: #000; }
+:root {
+  --accent: #0066cc;
+  --text: #000;
+}
 * { box-sizing: border-box; }
-body { font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-height: 1.5; color: var(--text); background: #fff; margin: 0; }
-.page { max-width: 900px; margin: 0 auto; padding: 2.5cm; }
+body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 11pt; line-height: 1.5; color: var(--text); background: #282828; margin: 0; }
+.page { max-width: 900px; margin: 40px auto; padding: 2.5cm; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 .actions { position: fixed; right: 16px; bottom: 16px; z-index: 999; }
 .actions .print-fab { border: none; background: transparent; padding: 0; cursor: pointer; }
 .actions .print-fab img { width: 48px; height: 48px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
 .header { text-align: center; }
-.name { font-size: 16pt; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.name { font-size: 16pt; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; text-align: center; }
 .subtitle { font-size: 11pt; margin-top: 4px; }
 .inline-list { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 11pt; align-items: baseline; }
 .inline-list a { color: var(--text); text-decoration: none; }
 .inline-list a:hover { text-decoration: underline; color: var(--accent); }
 .divider { border: none; height: 1px; margin: .5rem 0; background: linear-gradient(to right, #666 0%, #000 85%, #000 100%); position: relative; }
 .divider::after { content: ""; position: absolute; right: 0; top: -1px; width: 64px; height: 3px; background: #000; }
-.section-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; font-size: 12pt; color: #000; margin: 18px 0 8px; text-align: center; }
+.section-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; font-size: 12pt; color: #000; margin: 18px 0 8px; text-align: left; }
 .section { margin-bottom: 18px; }
 .section-title.center { text-align: center; }
 .role { margin-bottom: 12px; }
@@ -63,5 +66,26 @@ li { margin-bottom: 4px; }
   #experiencia .role-header > div, #experiencia .role ul { transition: all .2s ease; }
 }
 @page { size: A4; margin: 2.5cm; }
-@media print { .page { padding: 0; } .actions { display: none; } a { color: inherit; text-decoration: none; } .skill-group { border-color: #000; }
+@media print { .page { padding: 0; margin: 0; box-shadow: none; } body { background: #fff; } .actions { display: none; } a { color: inherit; text-decoration: none; } .skill-group { border-color: #000; }
+}
+
+.header-info,
+.header-links {
+  text-align: center;
+  font-size: 11pt;
+  margin-top: 4px;
+}
+
+.header-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.header-links a:hover {
+  text-decoration: underline;
+}
+
+.header .sep {
+  margin: 0 6px;
 }
