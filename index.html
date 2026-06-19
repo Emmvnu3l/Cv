@@ -12,33 +12,132 @@
 <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CV | Emmanuel Moreno</title>
+<meta content="index,follow" name="robots"/>
+<meta content="Emmanuel Moreno" name="author"/>
+<meta content="Currículum | Emmanuel Moreno" property="og:title"/>
+<link href="imgs/cv.png" rel="icon" type="image/png"/>
+<style>:root {
+  --accent: #0066cc;
+  --text: #000;
+}
+* { box-sizing: border-box; }
+body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 11pt; line-height: 1.5; color: var(--text); background: #282828; margin: 0; }
+.page { max-width: 900px; margin: 40px auto; padding: 2.5cm; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.actions { position: fixed; right: 16px; bottom: 16px; z-index: 999; }
+.actions .print-fab { border: none; background: transparent; padding: 0; cursor: pointer; }
+.actions .print-fab img { width: 48px; height: 48px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
+.header { text-align: center; }
+.name { font-size: 16pt; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; text-align: center; }
+.subtitle { font-size: 11pt; margin-top: 4px; }
+.inline-list { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 11pt; align-items: baseline; }
+.inline-list a { color: var(--text); text-decoration: none; }
+.inline-list a:hover { text-decoration: underline; color: var(--accent); }
+.divider { border: none; height: 1px; margin: .5rem 0; background: linear-gradient(to right, #666 0%, #000 85%, #000 100%); position: relative; }
+.divider::after { content: ""; position: absolute; right: 0; top: -1px; width: 64px; height: 3px; background: #000; }
+.section-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; font-size: 12pt; color: #000; margin: 18px 0 8px; text-align: left; }
+.section { margin-bottom: 18px; }
+.section-title.center { text-align: center; }
+.role { margin-bottom: 12px; }
+.role-header { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 8px; }
+.position { font-weight: 700; min-width: 0; overflow-wrap: break-word; }
+.position-link { color: #000; text-decoration: none; }
+.position-link:hover { text-decoration: underline; color: var(--accent); }
+.meta { font-style: italic; color: #222; }
+/* Consistent list spacing in roles */
+.role ul { margin-top: 8px; }
+.role ul li { margin-bottom: 4px; }
+ul { margin: 6px 0 0 18px; padding: 0; }
+li { margin-bottom: 4px; }
+.edu-item { margin-bottom: 10px; }
+.degree { font-weight: 700; }
+.cert-list { list-style: none; padding-left: 0; margin: 8px 0 0; }
+.cert-item { display: block; text-decoration: none; color: #000; padding: 2px 0; }
+.cert-item:hover { text-decoration: underline; color: var(--accent); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.skill-group { border-left: 3px solid var(--accent); padding-left: 10px; }
+.group-title { font-weight: 700; margin-bottom: 6px; }
+.skill { margin-bottom: 8px; }
+.skill-name { display: flex; justify-content: space-between; }
+.level { display: block; height: 6px; background: #e6e6e6; position: relative; border-radius: 3px; margin-top: 4px; }
+.level::after { content: ""; position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); border-radius: 3px; }
+.level-basico::after { width: 33%; }
+.level-intermedio::after { width: 66%; }
+.level-avanzado::after { width: 100%; }
+@media (max-width: 900px) { .page { padding: 1.5cm; } .skills-grid { grid-template-columns: repeat(2, 1fr); } .name { font-size: 14pt; } }
+@media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } .page { padding: 1cm; } }
+@media (max-width: 640px) {
+  .header { text-align: left; }
+  .inline-list { justify-content: flex-start; display: grid; grid-auto-flow: row; row-gap: 6px; }
+  .inline-list .sep { display: none; }
+  .inline-list > :not(.sep) { display: block; position: relative; padding-left: 12px; }
+  .inline-list > :not(.sep)::before { content: "•"; position: absolute; left: 0; top: 0; }
+  .header .subtitle { position: relative; padding-left: 12px; margin-top: 6px; }
+  .header .subtitle::before { content: "•"; position: absolute; left: 0; top: 0; }
+}
+/* Mobile layout for Experiencia Laboral */
+@media (max-width: 480px) {
+  #experiencia .role { margin-bottom: 12px; }
+  #experiencia .role-header { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding-bottom: 0; }
+  #experiencia .role-header > div { width: 100%; }
+  #experiencia .role-header .meta { position: static; margin-top: 2px; }
+  #experiencia .role ul { margin-top: 8px; }
+  #experiencia .role-header > div, #experiencia .role ul { transition: all .2s ease; }
+}
+@page { size: A4; margin: 2.5cm; }
+@media print { .page { padding: 0; margin: 0; box-shadow: none; } body { background: #fff; } .actions { display: none; } a { color: inherit; text-decoration: none; } .skill-group { border-color: #000; }
+}
+
+.header-info,
+.header-links {
+  text-align: center;
+  font-size: 11pt;
+  margin-top: 4px;
+}
+
+.header-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.header-info a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header-links a:hover {
+  text-decoration: underline;
+}
+
+.header .sep {
+  margin: 0 6px;
+}
+</style>
 <div class="page">
-<div class="actions">
-<button aria-label="Descargar PDF" class="print-fab" id="print-btn">
-<img alt="Descargar PDF" src="imgs/pdf.png"/>
-</button>
-</div>
 <header class="header">
-<div class="name">EMMANUEL ALEJANDRO MORENO CHAVERO</div>
+<div class="name">EMMANUEL ALEJANDRO CHAVERO mORENO</div>
 <div class="header-info">Santiago de Chile</div>
 <div class="header-info">
                 +56 9 75817332
                 <span class="sep">|</span>
-<a href="mailto:Emm.moreno@duocuc.cl" style="color: inherit; text-decoration: none;">Emm.moreno@duocuc.cl</a>
+<a href="mailto:Emm.moreno@duocuc.cl">Emm.moreno@duocuc.cl</a>
 </div>
 <div class="header-links">
 <a href="https://www.linkedin.com/in/3mmvnu3l/" rel="noopener" target="_blank">LinkedIn</a>
 <span class="sep">|</span>
 <a href="https://github.com/Emmvnu3l/EmmanuelMoreno" rel="noopener" target="_blank">GitHub</a>
 <span class="sep">|</span>
-<a href="#" rel="noopener" target="_blank">Portafolio</a>
+<a href="https://web-documentacion.vercel.app/" rel="noopener" target="_blank">Portafolio</a>
 </div>
 </header>
 <section class="section" id="perfil-profesional">
 <h2 class="section-title">PERFIL PROFESIONAL</h2>
 <hr class="divider"/>
-<p>Estudiante de Ingeniería en Informática con formación práctica en desarrollo fullstack. Experiencia académica y autónoma desarrollando aplicaciones web y mobile, aplicando patrones MVVM, Singletons, DI, Clean Arquitecture, Corroutines.</p>
-<p></p>
+<p><span>Estudiante de Ingeniería en Informática en DuocUC con enfoque en desarrollo fullstack y móvil nativo. He trabajado en soluciones reales en mantenimiento de aplicaciones, creaciones de módulos aplicando patrones como MVVM, Clean Architecture, Inyección de Dependencias y Corrutinas en Kotlin. Me caracterizo por buscar la mejora continua en cada proyecto para entregar valor real al usuario final.</span><br/></p>
+<p class=""></p>
 </section>
 <section class="section" id="formacion-academica">
 <h2 class="section-title">FORMACIÓN ACADÉMICA</h2>
@@ -46,72 +145,31 @@
 <div class="edu-item">
 <div class="degree">Ingeniería en Informática</div>
 <div>Instituto profesional Duoc UC, Santiago</div>
-<div>Marzo 2024 – Presente | Graduación estimada: 2028
-
-
-Analista Programador
-Instituto profesional Duoc UC, Santiago
-Marzo 2024 – Presente | Graduación estimada: 2026</div>
+<div>Marzo 2024 – Presente | Graduación estimada: 2028</div>
+</div><div class="edu-item">
+<div class="degree">Analista Programador</div>
+<div>Instituto profesional Duoc UC, Santiago</div>
+<div>Marzo 2024 – Presente | Graduación estimada: 2026</div>
 </div>
 </section>
 <section class="section" id="proyectos-destacados">
-<h2 class="section-title">PROYECTOS DESTACADOS</h2>
+<h2 class="section-title">Experiencia laboral<div></div></h2><div class="role">
+<div class="role-header">
+<span class="position">2LA2 - <span>Desarrollo de App de Seguridad SOS                                 </span><em>Desarrollador | 2026</em><span><br/><br/></span></span>
+<div class="meta"><br/></div><div class="meta">Desarrollé una aplicación crítica de seguridad para mujeres que permite activar alertas y transmisión de video en tiempo real. Utilicé Clean Architecture y Corrutinas para garantizar una respuesta inmediata (menos de 200ms) y eliminar fallos en situaciones de emergencia. Gracias a la optimización del código y la gestión eficiente de recursos, logré reducir el consumo de batería en un 30% y asegurar una disponibilidad del 90%, permitiendo que la app funcione confiablemente incluso en zonas con baja conectividad.<em></em></div><div class="meta"><ul></ul></div></div>
+<ul>
+</ul>
+<div><strong>Stack:</strong> Kotlin</div>
+</div><ul>
+</ul><h2 class="section-title">PROYECTOS DESTACADOS</h2>
 <hr class="divider"/>
 <div class="role">
 <div class="role-header">
-<span class="position">E-commerce Web – Plataforma de Comercio de aparatos tecnológicos</span>
-<div class="meta"><em>Project Manager | 2025</em></div>
+<span class="position">Portafolio - Documetación                                                                                 <em>PM | 2026</em></span>
 </div>
-<p>Plataforma web para descubrir y comprar aparatos tecnológicos, con filtros avanzados y recomendaciones.</p>
-<ul>
-<li>Proyecto final integrado de Programación Fullstack II .</li>
-<li>Liderazgo de equipo multidisciplinario bajo metodología ágil, coordinando desarrollo frontend/backend e integración continua.</li>
-<li>Implementación de autenticación con JWT y OAuth2, gestionando usuarios y roles.</li>
-<li>Desarrollo de APIs RESTful para CRUD de productos, carritos, ordenes, usuarios, reseñas con validación y autorización.</li>
+<p><span>Lideré el diseño y despliegue de un portafolio web estratégico para documentar casos de estudio de mis implementaciones en múltiples entornos. Estructuré la información bajo metodología </span><span>STAR</span><span>, cuantificando métricas de impacto (ahorro de tiempo, optimización de recursos) para cada Requisito. El sitio ha servido como herramienta clave de validación técnica, reduciendo el tiempo de evaluación de mis habilidades en un </span><span>50%</span><span> y aumentando la visibilidad de mi perfil.</span></p><ul>
 </ul>
-<div><strong>Stack:</strong> React, CSS, Springboot REST Framework,
-                    Mysql.</div>
-<div><strong>Repositorio:</strong> <a href="https://github.com/Emmvnu3l/MicroService-Proyect" rel="noopener" target="_blank">GitHub - E-commerce Web</a>
-</div>
-</div>
-<div class="role">
-<div class="role-header">
-<span class="position">E-commerce Móvil – Aplicación Android</span>
-<div class="meta"><em>Desarrollador Full Stack | 2025</em></div>
-</div>
-<p>Aplicación móvil Android desarrollada en Kotlin para la gestión de un comercio electrónico, consumiendo un backend serverless implementado en Xano. El sistema permite la administración de usuarios, productos y pedidos mediante APIs REST.</p>
-<ul>
-<li>Desarrollo de aplicación móvil nativa en Android (Kotlin), implementando registro e inicio de sesión de usuarios, listado de productos, carrito de compras y gestión de pedidos.</li>
-<li>Consumo de APIs REST utilizando Retrofit, manejando autenticación, serialización de datos y control de errores.</li>
-<li>Implementación de backend en Xano para la lógica de negocio, incluyendo autenticación, gestión de usuarios, productos, órdenes y control de estados.</li>
-<li>Configuración de endpoints, variables de entorno y pruebas de servicios mediante usuarios de prueba (roles administrador y cliente).</li>
-<li>Gestión de almacenamiento de imágenes de productos desde el backend y vinculación mediante URLs consumidas por la aplicación móvil.</li>
-</ul>
-<div><strong>Stack:</strong> Kotlin (Android), Xano, REST API, Retrofit, JSON</div>
-<div>
-<strong>Repositorio:</strong>
-<a href="https://github.com/Emmvnu3l/appXano-ultima" rel="noopener" target="_blank">GitHub – E-commerce Móvil</a>
-</div>
-</div>
-<div class="role">
-<div class="role-header">
-<span class="position">GotaGris – Sistemas de Agua Gris para Agricultura Sostenible</span>
-<div class="meta"><em>Desarrollador Frontend | 2025</em></div>
-</div>
-<p>MVP de una plataforma web informativa para GotaGris, centrada en la sostenibilidad y eficiencia hídrica. El sistema detalla la propuesta de valor en reutilización de aguas grises para agricultura e incluye una sección de servicios y un módulo de contacto funcional.</p>
-<ul>
-<li>Desarrollo de una interfaz web responsiva utilizando HTML5 semántico, CSS3 (Custom Properties) y JavaScript E6+ para una experiencia de usuario fluida.</li>
-<li>Implementación de librerías modernas como Bootstrap 5.3 para el diseño, AOS (Animate On Scroll) para animaciones y Swiper para componentes interactivos.</li>
-<li>Optimización de rendimiento logrando puntuaciones Lighthouse ≥ 90 mediante el uso de formatos de imagen de última generación como AVIF y WebP y técnicas de Lazy Loading.</li>
-<li>Aplicación de estándares de Accesibilidad (WCAG) y SEO, incluyendo estructura de datos, metadatos y navegación optimizada para lectores de pantalla.</li>
-<li>Arquitectura de proyecto organizada bajo estándares profesionales, integrando preprocesadores (SCSS) y manejo de formularios mediante procesamiento en PHP.</li>
-</ul>
-<div><strong>Stack:</strong> HTML5, CSS3, JavaScript, Bootstrap 5, PHP, AOS, Swiper</div>
-<div>
-<strong>Repositorio:</strong>
-<a href="https://github.com/Emmvnu3l/proyectoDariana" rel="noopener" target="_blank">GitHub – GotaGris</a>
-                    | <strong>Demo:</strong> <a href="https://emmvnu3l.github.io/proyectoDariana/" rel="noopener" target="_blank">GotaGris</a>
-</div>
+<div><strong>Stack:</strong> React + TypeScript + Vite</div><div><b>Despliegue: <a href="https://web-documentacion.vercel.app/">Documentacion</a> </b><span>- Vercel </span></div>
 </div>
 <!-- <div class="role">
                 <div class="role-header">
@@ -136,21 +194,14 @@ Marzo 2024 – Presente | Graduación estimada: 2026</div>
             </div> -->
 </section>
 <section class="section" id="logros-tecnicos">
-<h2 class="section-title">LOGROS TÉCNICOS DESTACADOS</h2>
 <hr class="divider"/>
-<ul>
-<li>Diseño y ejecución de migración de SQL a MongoDB en entorno productivo, mejorando rendimiento de consultas y escalabilidad.</li>
-<li>Liderazgo técnico en E-commerce Web como Project Manager, coordinando un proyecto académico clave con buenas prácticas de desarrollo.</li>
-<li>Implementación de múltiples integraciones como autenticación con JWT y OAuth2, carrito de compras, sistema de reseñas, mejorando la experiencia de usuario.</li>
-<li>Desarrollo consistente de proyectos mediante aprendizaje autónomo continuo, aplicando análisis de riesgos previo a cambios críticos.</li>
-</ul>
 </section>
 <section class="section" id="competencias-tecnicas">
 <h2 class="section-title">COMPETENCIAS TÉCNICAS</h2>
 <hr class="divider"/>
 <div class="edu-item">
 <div><strong>Frontend:</strong> React, Bootstrap, CSS, TypeScript, JavaScript,
-                    HTML5/CSS3.</div>
+                    HTML5/CSS3.</div><div><b>Móvil: </b>Kotlin (android nativo), React Native (Multi plataforma)</div>
 <div><strong>Backend:</strong> Django, Springboot, Java(Kotlin), XANO, SUPABASE.
                 </div>
 <div><strong>Bases de datos:</strong> Oracle, MongoDB, MySQL.</div>
@@ -184,7 +235,7 @@ Marzo 2024 – Presente | Graduación estimada: 2026</div>
 <h2 class="section-title">FORMACIÓN COMPLEMENTARIA</h2>
 <hr class="divider"/>
 <div class="edu-item">
-<div><strong>Bootcamps y cursos online:</strong> Red Hat System Administration I &amp; II — RHEL 9.3.</div>
+<div><strong>Bootcamps y cursos online:</strong> </div><div>- Red Hat System Administration I &amp; II — RHEL 9.3. - Certifika.</div><div>- Desarrollador Fullstack Js. - Talento Digital.</div><div>- <span>Oracle Next Education - Oracle.</span></div><div><span><br/></span></div>
 <div><strong>Aprendizaje autodidacta:</strong> estudio continuo de documentación oficial, tutoriales y
                     recursos técnicos, aplicando lo aprendido directamente en proyectos reales y académicos.</div>
 </div>
@@ -192,9 +243,13 @@ Marzo 2024 – Presente | Graduación estimada: 2026</div>
 <section class="section" id="nota-profesional">
 <h2 class="section-title">NOTA PROFESIONAL FINAL</h2>
 <hr class="divider"/>
-<p>Durante estos años de estudio logré consolidar un expertise sólido en las tecnologías y metodologías relacionadas con el desarrollo web y la administración de sistemas. He adquirido habilidades prácticas en la implementación de soluciones tecnológicas, la resolución de problemas y la colaboración en equipos multidisciplinarios.</p>
+<p>Durante estos años de estudio e logrado consolidar un expertise sólido en las tecnologías y metodologías relacionadas con el desarrollo web , móvil y la administración de sistemas. He adquirido habilidades prácticas en la implementación de soluciones tecnológicas, mantenimiento y la resolución de problemas, siendo de gran aporte en la colaboración en equipos multidisciplinarios.<br/><br/></p>
 </section>
 </div>
-<script src="js/main.js"></script>
+<div class="actions">
+<button class="print-fab" id="print-btn" title="Descargar PDF">
+<img alt="PDF" src="imgs/pdf.png"/>
+</button>
+</div>
 </body>
 </html>
